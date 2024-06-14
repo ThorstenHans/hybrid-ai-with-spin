@@ -1,0 +1,18 @@
+apiVersion: core.spinoperator.dev/v1alpha1
+kind: SpinApp
+metadata:
+  name: hybrid-ai
+spec:
+  image: "ttl.sh/hybrid-ai:12h"
+  executor: containerd-shim-spin
+  replicas: 2
+  runtimeConfig:
+    loadFromSecret: hybrid-ai-runtime-config
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: hybrid-ai-runtime-config
+type: Opaque
+data:
+  runtime-config.toml: W2xsbV9jb21wdXRlXQp0eXBlID0gInJlbW90ZV9odHRwIgp1cmwgPSAiPEluc2VydCB1cmwgZnJvbSBjbG91ZCBkYXNoYm9hcmQ+IgphdXRoX3Rva2VuID0gIjM4YmFjYWYxLWMyOWMtNGM3ZS1iOTA5LTc2MGUxNjZlNTMxZiIK

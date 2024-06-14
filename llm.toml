@@ -1,0 +1,4 @@
+[llm_compute]
+type = "remote_http"
+url = "<Insert url from cloud dashboard>"
+auth_token = "38bacaf1-c29c-4c7e-b909-760e166e531f"
