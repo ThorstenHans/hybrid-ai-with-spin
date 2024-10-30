@@ -24,7 +24,7 @@ jobs:
       - name: Install Spin
         uses: fermyon/actions/spin/setup@v1
         with:
-          plugins: js2wasm, py2wasm, kube, trigger-command
+          plugins: js2wasm,py2wasm,kube,trigger-command
       - name: Build hybrid-ai
         run: spin build
         working-directory: .
