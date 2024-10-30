@@ -1,0 +1,30 @@
+name: "CI"
+on:
+  push:
+    branches:
+      - "main"
+env:
+  RUST_VERSION: "1.80.1"
+  GO_VERSION: "1.23.2"
+  TINYGO_VERSION: "0.33.0"
+  NODE_VERSION: "22"
+  PYTHON_VERSION: "3.13.0"
+  SPIN_VERSION: ""
+jobs:
+  spin:
+    runs-on: "ubuntu-latest"
+    name: Build Spin App
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: "${{ env.RUST_VERSION }}"
+          targets: wasm32-wasi
+      - name: Install Spin
+        uses: fermyon/actions/spin/setup@v1
+        with:
+          plugins: js2wasm, py2wasm, kube, trigger-command
+      - name: Build hybrid-ai
+        run: spin build
+        working-directory: .
